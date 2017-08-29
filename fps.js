@@ -30,6 +30,7 @@ class FPS {
 
     toggle() {
         this.hidden = this.hidden ? false : true;
+
         if (!this.hidden) {
             this.loop();
             this.canvas.classList.add('is-visible');
@@ -57,17 +58,19 @@ class FPS {
         this.add(currentFPS);
         this.ctx.clearRect(0, 0, this.width, this.height);
         this.ctx.fillStyle = '#f07622';
+
         for (var i = 0; i <= this.width; i++) {
             this.ctx.fillRect(i, 0, 1, 5 + 60 - this.allFPS[i]);
         }
 
         this.ctx.fillStyle = '#0178a6';
         this.ctx.fillText(currentFPS + ' fps', 51, 51);
-
         this.ctx.fillStyle = "#ffffff";
+
         for (var i = 0; i <= this.width; i++) {
             this.ctx.fillRect(i, 5 + 60 - this.allFPS[i], 1, 2);
         }
+
         this.ctx.fillText(currentFPS + ' fps', 50, 50);
     }
 
@@ -77,10 +80,12 @@ class FPS {
         var d = this.perf.now();
         this.currentTime = (d - this.startTime) / 1000;
         var result = Math.floor(this.frame / this.currentTime);
+
         if (this.currentTime > 1) {
             this.startTime = this.perf.now();
             this.frame = 0;
         }
+
         return result;
 
     }
